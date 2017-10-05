@@ -78,7 +78,30 @@ return {
     public: true
   }
 }</code></pre><p><strong>Please use the npm naming convention <code>ah-(name)-plugin</code> when uploading your plugin to npm</strong></p>
-<h2>Methods</h2><p>When creating plugins, you may find yourself wanting to do things which could normally be accomplished easily with a &quot;top level&quot; ActionHero project, but might be difficult from within a plugin. Here are some helpers:</p>
+<h2>Testing</h2><p>This new plugin structure also makes testing plugins much easier, as you can boot up an ActionHero server from within your plugin (if <code>actionhero</code> is a devDependancy) with the following:</p>
+<pre class="prettyprint source lang-js"><code>const path = require('path')
+process.env.PROJECT_ROOT = path.join(__dirname, '..', 'node_modules', 'actionhero')
+const ActionHero = require('actionhero')
+const actionhero = new ActionHero.Process()
+let api
+
+describe('My Plugin', () => {
+  before(async () => {
+    let configChanges = {
+      plugins: {
+        'testPlugin': { path: path.join(__dirname, '..') }
+      }
+    }
+
+    api = await actionhero.start({configChanges})
+  })
+
+  after(async () => { await actionhero.stop() })
+
+  it('does stuff', async () => {
+    //...
+  })
+})</code></pre><h2>Methods</h2><p>When creating plugins, you may find yourself wanting to do things which could normally be accomplished easily with a &quot;top level&quot; ActionHero project, but might be difficult from within a plugin. Here are some helpers:</p>
 <h3>Routes:</h3><ul>
 <li><code>api.routes.registerRoute(method, path, action, apiVersion, matchTrailingPathParts)</code><ul>
 <li>Add a route to the system.</li>
