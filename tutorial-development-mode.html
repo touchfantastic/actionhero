@@ -43,7 +43,8 @@
 </header>
 
 <article>
-    <h2>Overview</h2><p><strong>Warning: Don't use this in production!</strong></p>
+    <p><img src="ops-tools.svg" alt=""></p>
+<h2>Overview</h2><p><strong>Warning: Don't use this in production!</strong></p>
 <p>To enable development mode simply set <code>developmentMode: true</code> in your <code>config/api.js</code>.</p>
 <p>ActionHero's development mode is a little different than tools like <a href="https://github.com/remy/nodemon">nodemon</a> in that it tries hard not to restart the server process unless something drastic changes. Changes to routes, tasks, and actions can simply replace those already in memory when they are updated on disk. Other changes, like changes to <code>api.config</code> or initializers are more severe, and will restart the whole application.  Note that <code>api.config.general.developmentMode</code> is different from <code>NODE_ENV</code>, which by default is &quot;development&quot; (and is logged when ActionHero boots). <code>NODE_ENV</code> is used to determine which config settings to use, and has no effect on developmentMode.</p>
 <h2>Effects of Development Mode</h2><p>Development mode, when enabled, will poll for changes in your actions, tasks and initializers, and reload them on the fly.</p>

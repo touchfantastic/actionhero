@@ -43,7 +43,8 @@
 </header>
 
 <article>
-    <h2>Overview</h2><p>Tasks are background jobs meant to be run separately from a client's request. They can be started by an action or by the server itself. With ActionHero, there is no need to run a separate daemon to process these jobs. ActionHero uses the <a href="https://github.com/taskrabbit/node-resque">node-resque</a> package to store and process tasks in a way compatible with the <a href="https://github.com/resque/resque">resque</a> ecosystem.</p>
+    <p><img src="built-in-tasks.svg" alt=""></p>
+<h2>Overview</h2><p>Tasks are background jobs meant to be run separately from a client's request. They can be started by an action or by the server itself. With ActionHero, there is no need to run a separate daemon to process these jobs. ActionHero uses the <a href="https://github.com/taskrabbit/node-resque">node-resque</a> package to store and process tasks in a way compatible with the <a href="https://github.com/resque/resque">resque</a> ecosystem.</p>
 <p>There are 3 types of tasks ActionHero can process: <code>normal</code>, <code>delayed</code>, and <code>periodic</code>.</p>
 <ul>
 <li><code>normal</code> tasks are enqueued and processed one-by-one by the task TaskProcessors</li>

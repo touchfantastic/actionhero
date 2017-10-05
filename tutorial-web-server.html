@@ -43,7 +43,8 @@
 </header>
 
 <article>
-    <h2>Overview</h2><p>The web server exposes actions and files over http or https. You can visit the API in a browser, Curl, etc. <code>{url}?action=actionName</code> or <code>{url}/api/{actionName}</code> is how you would access an action. For example, using the default ports in <code>/config/servers/web.js</code> you could reach the status action with both <code>http://127.0.0.1:8080/status</code> or <code>http://127.0.0.1:8080/?action=status</code></p>
+    <p><img src="documentation.svg" alt=""></p>
+<h2>Overview</h2><p>The web server exposes actions and files over http or https. You can visit the API in a browser, Curl, etc. <code>{url}?action=actionName</code> or <code>{url}/api/{actionName}</code> is how you would access an action. For example, using the default ports in <code>/config/servers/web.js</code> you could reach the status action with both <code>http://127.0.0.1:8080/status</code> or <code>http://127.0.0.1:8080/?action=status</code></p>
 <p>HTTP responses are always JSON and follow the following format:</p>
 <pre class="prettyprint source lang-js"><code>{
   hello: &quot;world&quot;,

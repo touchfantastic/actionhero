@@ -43,7 +43,8 @@
 </header>
 
 <article>
-    <h2>General</h2><p>ActionHero ships with a chat framework which may be used by all persistent connections (<code>socket</code> and <code>websocket</code>). There are methods to create and manage chat rooms and control the users in those rooms. Chat does not have to be for peer-to-peer communication, and is a metaphor used for many things, including the sharing of all realtime data between client and server, and client to client.  This can be used for games, syndication, etc.</p>
+    <p><img src="chat.svg" alt=""></p>
+<h2>General</h2><p>ActionHero ships with a chat framework which may be used by all persistent connections (<code>socket</code> and <code>websocket</code>). There are methods to create and manage chat rooms and control the users in those rooms. Chat does not have to be for peer-to-peer communication, and is a metaphor used for many things, including the sharing of all realtime data between client and server, and client to client.  This can be used for games, syndication, etc.</p>
 <p>Clients themselves interact with rooms via <code>verbs</code>. Verbs are short-form commands that will attempt to modify the connection's state, either joining or leaving a room. Clients can be in many rooms at once.</p>
 <p>Relevant chat verbs are:</p>
 <ul>
@@ -55,7 +56,7 @@
 <p>The special verb for persistent connections <code>say</code> makes use of <code>api.chatRoom.broadcast</code> to tell a message to all other users in the room, IE: <code>say myRoom Hello World</code> from a socket client or <code>client.say(&quot;myRoom&quot;, 'Hello World&quot;)</code> for a websocket.</p>
 <p>Chat on multiple actionHero nodes relies on redis for both chat (pub/sub) and a key store defined by <code>api.config.redis</code>. The redis pub/sub server and the key store don't need to be the same instance of redis, but they do need to be the same for all ActionHero servers you are running in the cluster. This is how ActionHero scales the chat features.</p>
 <p>There is no limit to the number of rooms which can be created, but keep in mind that each room stores information in redis, and there load created for each connection.</p>
-<h2>Middleware</h2><p>There are 4 types of middleware you can install for the chat system: <code>say</code>, <code>onSayReceive</code>, <code>join</code>, and <code>leave</code>. You can learn more about <a href="tutorial-middleware.html">chat middleware in the middleware section of this site</a>.  Using middleware when messages are sent or when connections join rooms is how you build up authentication and more complex workflows. </p>
+<h2>Middleware</h2><p>There are 4 types of middleware you can install for the chat system: <code>say</code>, <code>onSayReceive</code>, <code>join</code>, and <code>leave</code>. You can learn more about <a href="tutorial-middleware.html">chat middleware in the middleware section of this site</a>.  Using middleware when messages are sent or when connections join rooms is how you build up authentication and more complex workflows.</p>
 <h2>Specific Client Communication</h2><p>Every connection object also has a <code>connection.sendMessage(message)</code> method which you can call directly from the server.</p>
 <h2>Client Use</h2><p>The details of communicating within a chat room are up to each individual server (see <a href="tutorial-websocket-server.html">websocket</a> or <a href="tutorial-socket-server.html">socket</a>), but the same principals apply:</p>
 <ul>
