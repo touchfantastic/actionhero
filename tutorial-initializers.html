@@ -43,9 +43,9 @@
 </header>
 
 <article>
-    <h2>Overview</h2><p>Initializers are the main way you expand your ActionHero server.  This is where you connect to databases, modify the global <code>api</code> object with new classes and helper methods, and set up your <a href="/docs/core/middleware">middleware</a>.</p>
-<p>Initializers run in 3 phases coinciding with the lifecycles of the application: <code>init</code>, <code>start</code>, and <code>stop</code>.  All <code>init</code> steps happen before all <code>start</code> steps.  Initializers can define both methods and priorities which will happen at each phase of the server's lifecycle.</p>
-<p>System initializers (like setting up redis and the cache) have priority levels in the 100 to 1000 level range.  Application initializers should run with a priority level of over 1000 to use methods created by the system.  You can of course set priority levels lower than 1000 in your application (perhaps you connect to a database).  The priority level split is purely convention.</p>
+    <h2>Overview</h2><p>Initializers are the main way you expand your ActionHero server.  This is where you connect to databases, modify the global <code>api</code> object with new classes and helper methods, and set up your <a href="tutorial-middleware.html">middleware</a>.</p>
+<p>Initializers run in 3 phases coinciding with the lifecycles of the application: <code>initialize</code>, <code>start</code>, and <code>stop</code>.  All <code>initialize</code> steps happen before all <code>start</code> steps.  Initializers can define both methods and priorities which will happen at each phase of the server's lifecycle.</p>
+<p>System initializers (like setting up redis and the cache) have priority levels in the 100 to 1000 level range.  Application initializers should run with a priority level of over 1000 to use methods created by ActionHero, as they might not exist before then.  You can of course set priority levels lower than 1000 in your application (perhaps you connect to a database).  The priority level split is purely convention.</p>
 <p>In general, <code>initialize()</code> methods should create prototypes and new objects, and <code>start()</code> should boot things or connect to external resources.</p>
 <h2>Format</h2><pre class="prettyprint source lang-js"><code>// initializers/stuffInit.js
 
@@ -62,16 +62,19 @@ module.exports = class StuffInit extends ActionHero.Initializer {
 
   async initialize () {
     api.StuffInit = {}
-    api.StuffInit.startStuff = async () => {}
+    api.StuffInit.doAThing = async () => {}
     api.StuffInit.stopStuff = async () => {}
+    api.log('I initialized', 'debug', this.name)
   }
 
   async start () {
     await api.StuffInit.startStuff()
+    api.log('I started', 'debug', this.name)
   }
 
   async stop () {
     await api.StuffInit.stopStuff()
+    api.log('I stopped', 'debug', this.name)
   }
 }</code></pre><p>To use a custom initializer, create a <code>initializers</code> directory in your project. Export a class that extends <code>ActionHero.Initializer</code> and implements at least one of <code>start</code>, <code>stop</code> or <code>initialize</code> and specify your priorities.</p>
 <p>You can generate a file of this type with <code>actionhero generate initializer --name=stuffInit</code></p>
