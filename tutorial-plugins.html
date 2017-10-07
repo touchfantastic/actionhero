@@ -57,6 +57,7 @@
 | - initializers
 | - config
 | - public
+| - cli
 |
 | - package.json</code></pre><p>To create a plugin, create a project with the above structure via <code>actionhero generate plugin</code>.  Note that <code>actionhero</code> should be a <code>peerDependnacy</code> within your plugin, with the proper version.</p>
 <p>This structure will allow elements to be loaded into ActionHero (we search <code>/actions</code> for actions, <code>/tasks</code> for tasks, etc)</p>
@@ -75,6 +76,7 @@ return {
     tasks: true,
     initializers: true,
     servers: true,
+    cli: true,
     public: true
   }
 }</code></pre><p><strong>Please use the npm naming convention <code>ah-(name)-plugin</code> when uploading your plugin to npm</strong></p>
