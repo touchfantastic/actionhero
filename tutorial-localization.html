@@ -57,9 +57,9 @@
 </ul>
 <h2>Connection Locale</h2><p>Since every ActionHero implementation is unique, we do not ship with a &quot;guess&quot; about how to determine a given connection's locale. Perhaps you have an HTTP server and you can trust your client's <code>accept-language</code> headers. Or perhaps you run your API under a number of different host names and you can presume locale based on them. Whatever the case, you need to create a async method in an initializer which will be called when each connection connects to return its locale.</p>
 <p>For example, I may have an initializer in my project like this:</p>
-<pre class="prettyprint source lang-js"><code>const {Action} = require('actionhero')
+<pre class="prettyprint source lang-js"><code>const {Initializer} = require('actionhero')
 
-module.exports = class DetermineConnectionLocale {
+module.exports = class DetermineConnectionLocale extends Initializer {
   constructor () {
     super()
     this.name = 'determineConnectionLocale'
