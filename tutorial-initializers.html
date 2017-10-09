@@ -52,9 +52,9 @@
 <p>In general, <code>initialize()</code> methods should create prototypes and new objects, and <code>start()</code> should boot things or connect to external resources.</p>
 <h2>Format</h2><pre class="prettyprint source lang-js"><code>// initializers/stuffInit.js
 
-const {ActionHero, api} = require('actionhero')
+const {Initializer, api} = require('actionhero')
 
-module.exports = class StuffInit extends ActionHero.Initializer {
+module.exports = class StuffInit extends Initializer {
   constructor () {
     super()
     this.name = 'StuffInit'
