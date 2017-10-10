@@ -62,7 +62,7 @@
 <li><p><strong>Actions</strong></p>
 <ul>
 <li>Actions are now ES6 classes, which extend <code>require('actionhero').Action</code>.</li>
-<li>The <code>run</code> method only has one argument now, <code>data</code>.  <code>api</code> can be required globally to your file.</li>
+<li>The <code>run</code> method only has one argument now, <code>data</code> and becomes a <code>async</code> method.  <code>api</code> can be required globally to your file.</li>
 </ul>
 </li>
 </ul>
@@ -82,7 +82,7 @@ module.exports = class MyAction extends Action {
 }</code></pre><ul>
 <li><strong>Tasks</strong><ul>
 <li>Tasks are now ES6 classes, which extend <code>require('actionhero').Task</code>.</li>
-<li>The <code>run</code> method only has one argument now, <code>data</code>.  <code>api</code> can be required globally to your file.</li>
+<li>The <code>run</code> method only has one argument now, <code>data</code> and becomes a <code>async</code> method.  <code>api</code> can be required globally to your file.</li>
 </ul>
 </li>
 </ul>
@@ -105,7 +105,7 @@ module.exports = class SendWelcomeMessage extends Task {
 }</code></pre><ul>
 <li><strong>Initializers</strong><ul>
 <li>Initializers are now ES6 classes, which extend <code>require('actionhero').Initializer</code>.</li>
-<li>The <code>initialize</code>, <code>start</code>, and <code>stop</code> methods now have no arguments.  <code>api</code> can be required globally to your file.</li>
+<li>The <code>initialize</code>, <code>start</code>, and <code>stop</code> methods now have no arguments and become a <code>async</code> methods.  <code>api</code> can be required globally to your file.</li>
 </ul>
 </li>
 </ul>
@@ -139,7 +139,7 @@ module.exports = class StuffInit extends ActionHero.Initializer {
 }</code></pre><ul>
 <li><strong>Servers</strong><ul>
 <li>Servers are now ES6 classes, which extend <code>require('actionhero').Server</code>.</li>
-<li>The <code>initialize</code>, <code>start</code>, and <code>stop</code> methods now have no arguments.  <code>api</code> can be required globally to your file.</li>
+<li>The <code>initialize</code>, <code>start</code>, and <code>stop</code> methods now have no arguments and become a <code>async</code> methods.  <code>api</code> can be required globally to your file.</li>
 </ul>
 </li>
 </ul>
@@ -194,7 +194,7 @@ module.exports = class MyServer extends ActionHero.Server {
 }</code></pre><ul>
 <li><strong>CLI Commands</strong><ul>
 <li>CLI Commands are now ES6 classes, which extend <code>require('actionhero').CLI</code>.</li>
-<li>The <code>run</code> method now has one argument, <code>data</code>.  <code>api</code> can be required globally to your file.</li>
+<li>The <code>run</code> method now has one argument, <code>data</code> and becomes a <code>async</code> method.  <code>api</code> can be required globally to your file.</li>
 </ul>
 </li>
 </ul>
