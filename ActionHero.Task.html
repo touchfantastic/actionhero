@@ -387,7 +387,9 @@ module.exports = class SayHello extends Task {
 
 
 <div class="description">
-    <p>The main &quot;do something&quot; method for this task.  It can be <code>async</code>.  Anything returned from this metod will be logged.  If error is thrown in this method, it will be logged &amp; caught.  Using middleware, you can decide to re-run the task on failure.</p>
+    <p>The main &quot;do something&quot; method for this task.  It can be <code>async</code>.  Anything returned from this metod will be logged.
+If error is thrown in this method, it will be logged &amp; caught.  Using middleware, you can decide to re-run the task on failure.
+<code>this</code> within a Task's run method is an instance of a node-resque worker.  This means you can inpsect <code>this.job</code> and set <code>this.result</code> expliclity if your Task does not return a value.</p>
 </div>
 
 
