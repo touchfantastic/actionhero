@@ -290,7 +290,7 @@ module.exports = class SayHello extends Task {
    this.frequency = (60 * 1000)
  }
 
- async run (data) {
+ async run (data, worker) {
    api.log('Hello!')
  }
 }</code></pre>
@@ -335,7 +335,7 @@ module.exports = class SayHello extends Task {
 
     
 
-    <h4 class="name" id=".run"><span class="type-signature">(async, static) </span>run<span class="signature">(data)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".run"><span class="type-signature">(async, static) </span>run<span class="signature">(data, worker)</span><span class="type-signature"></span></h4>
 
     
 
@@ -389,7 +389,7 @@ module.exports = class SayHello extends Task {
 <div class="description">
     <p>The main &quot;do something&quot; method for this task.  It can be <code>async</code>.  Anything returned from this metod will be logged.
 If error is thrown in this method, it will be logged &amp; caught.  Using middleware, you can decide to re-run the task on failure.
-<code>this</code> within a Task's run method is an instance of a node-resque worker.  This means you can inpsect <code>this.job</code> and set <code>this.result</code> expliclity if your Task does not return a value.</p>
+<code>this</code> is a Task instance itself now.</p>
 </div>
 
 
@@ -444,6 +444,29 @@ If error is thrown in this method, it will be logged &amp; caught.  Using middle
             
 
             <td class="description last"><p>The data about this instance of the task, specifically params.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>worker</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Instance of a node-resque worker. You can inspect <code>worker.job</code> and set <code>worker.result</code> explicitly if your Task does not return a value.</p></td>
         </tr>
 
     
