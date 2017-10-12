@@ -171,7 +171,7 @@ Descriptions:
 * version
   description: return the ActionHero version within this project</code></pre><h2>Linking the ActionHero Binary</h2><p>If you installed ActionHero globally (<code>npm install actionhero -g</code>) you should have the <code>actionhero</code> binary available to you within your shell at all times. Otherwise, you can reference the binary from either <code>./node_modules/.bin/actionhero</code> or <code>npx actionhero</code>.</p>
 <p>If you installed ActionHero locally, you can add a reference to your path (OSX and Linux): <code>export PATH=$PATH:node_modules/.bin</code> to be able to use simpler commands, IE <code>actionhero start</code>. On windows this can be done by running <code>set PATH=%PATH%;%cd%\node_modules\.bin</code> at command prompt (not powershell).</p>
-<p>Newer versions of NPM (v4+) allow you to also use the <code>npx</code> command, ie: <code>npx actionhero start cluster --workers=2</code>, which is a simple way to get to the ActionHero binary from the top-level of your project. </p>
+<p>Newer versions of NPM (v4+) allow you to also use the <code>npx</code> command, ie: <code>npx actionhero start cluster --workers=2</code>, which is a simple way to get to the ActionHero binary from the top-level of your project.</p>
 <h2>Environments and Config</h2><p>By default, ActionHero will use the settings found in the <code>exports.default</code> blocks in <code>/config/</code>. However, you can set environment-specific overrides or changes. ActionHero inspects <code>process.env.NODE_ENV</code> to load up runtime configuration overrides from <code>exports.#{env}</code> blocks in your configuration files. This is the recommended way to have separate settings for staging and production.</p>
 <p>The load order of configs is:</p>
 <ul>
@@ -221,10 +221,10 @@ await sleep()
 api.log(&quot; >> stopping server...&quot;)
 await actionhero.stop()
 api.log(&quot; >> Stopped!&quot;)
-process.exit()</code></pre><p>Feel free to look at the source of <code>./node_modules/actionhero/bin/include/start</code> to see how the main ActionHero server is implemented for more information.</p>
+process.exit()</code></pre><p>Feel free to look at the source of <code>./node_modules/actionhero/bin/methods/start</code> to see how the main ActionHero server is implemented for more information.</p>
 <p>You can programmatically control an ActionHero server with <code>actionhero.start(params)</code>, <code>actionhero.stop()</code> and <code>actionhero.restart()</code></p>
 <p>From within ActionHero itself (actions, initializers, etc), you can use <code>api.commands.start</code>, <code>api.commands.stop</code>, and <code>api.commands.restart</code> to control the server.</p>
-<h2>Signals</h2><pre class="prettyprint source lang-bash"><code>> ./node_modules/.bin/actionhero start cluster --workers=2
+<h2>Signals</h2><pre class="prettyprint source lang-bash"><code>> npx actionhero start cluster --workers=2
 info: actionhero >> start cluster
 notice:  - STARTING CLUSTER -
 notice: pid: 41382
