@@ -156,6 +156,7 @@ worker: SCHEDULER=true  \\
 <h2>Global Packages</h2><p>It is best to avoid installing any global packages. This way, you won't have to worry about conflicts, and your project can be kept up to date more easily. When using npm to install a local package the package's binaries are always copied into <code>./node_modules/.bin</code>.</p>
 <p>You can add local references to your $PATH like so to use these local binaries:</p>
 <p><code>export PATH=$PATH:node_modules/.bin</code></p>
+<p>ActionHero is not designed to function when installed globally.  Do not install ActionHero globally, using <code>npm install -g</code></p>
 <h2>Nginx Example</h2><p>While ActionHero can be the font-line server your users hit, it's probably best to proxy ActionHero behind a load balancer, nginx, haproxy, etc. This will help you pool connections before hitting node, SSL terminate, serve static assets, etc.</p>
 <p>Here is an example nginx config for interfacing with ActionHero, including using sockets (not http) and handing the websocket upgrade path.</p>
 <ul>
