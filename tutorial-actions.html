@@ -68,7 +68,7 @@ module.exports = class MyAction extends Action {
 <p>You can create you own actions by placing them in a <code>./actions/</code> folder at the root of your application.  You can use the generator with <code>actionhero generate action --name=myAction</code></p>
 <p>You can also define more than one action per file if you would like, and extend classes to share common methods and components (like input parsers).</p>
 <pre class="prettyprint source lang-js"><code>// Compound Action with Shared Inputs//
-const {Action, api} = require('actionhero')
+const {Action} = require('actionhero')
 
 class ValidatedAction extends Action {
   constructor () {
@@ -86,7 +86,7 @@ class ValidatedAction extends Action {
   }
 
   emailValidator (param) {
-    if (email.indexOf('@') &lt; 0) {
+    if (param.indexOf('@') &lt; 0) {
       throw new Error('that is not a valid email address')
     }
   }
@@ -159,7 +159,7 @@ class ValidatedAction extends Action {
       multiplier: {
         required: false,
         validator: (param, connection, actionTemplate) => {
-          if (param &lt; 0) { throw new Error('must be > 0') } else { return true }
+          if (param &lt; 0) { throw new Error('must be > 0') }
         },
         formatter: (param, connection, actionTemplate) => {
           return parseInt(param)
@@ -210,7 +210,7 @@ class ValidatedAction extends Action {
   multiplier: {
     required: true,
     validator: (param, connection, actionTemplate) => {
-      if (param &lt; 0) { throw new Error('must be > 0') } else { return true }
+      if (param &lt; 0) { throw new Error('must be > 0') }
     },
     formatter: (param, connection, actionTemplate) => {
       return parseInt(param);
@@ -229,7 +229,7 @@ class ValidatedAction extends Action {
         required: true,
         default: 1,
         validator: (param, connection, actionTemplate) => {
-          if (param &lt; 0) { throw new Error('must be > 0') } else { return true }
+          if (param &lt; 0) { throw new Error('must be > 0') }
         },
         formatter: (param, connection, actionTemplate) => {
           return parseInt(param);
@@ -256,7 +256,7 @@ class ValidatedAction extends Action {
 </ul>
 </li>
 <li><code>validator = function(param, connection, actionTemplate)</code><ul>
-<li>should return true if validation passed</li>
+<li>should return true, null, or undefined (return nothing) if validation passed</li>
 <li>should throw an error message if validation fails which will be returned to the client</li>
 <li>Default: Parameter is always valid</li>
 </ul>
@@ -286,7 +286,6 @@ class ValidatedAction extends Action {
   validator: (p) => {
     if(isNaN(parseFloat(p)){ throw new Error('not a number') }
     if(p &lt; 0){ throw new Error('money cannot be negative') }
-    else{ return true }
   }
 }</code></pre><p>Formatters and Validators can also be named method names. For example, you might have an action like:</p>
 <pre class="prettyprint source lang-js"><code>inputs: {
