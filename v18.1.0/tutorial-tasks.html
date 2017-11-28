@@ -190,7 +190,7 @@ exports.SayGoodbye = class SayGoodbye extends Task {
 <li><code>task.description</code>: a description</li>
 <li><code>task.queue</code>: the default queue to run this task within (can be overwritten when enqueued)</li>
 <li><code>task.frequency</code>: In milliseconds, how often should I run?. A frequency of <code>&gt; 0</code> denotes this task as periodic and ActionHero will automatically enqueued when the server boots. Only one instance of a periodic task will be enqueued within the cluster at a time, regardless of how many ActionHero nodes are connected.</li>
-<li><code>task.midleware</code>: midleware modify how your tasks are enqueued. For example, if you use the <code>queue-lock</code> plugin, only one instance of any job (with similar arguments) can be enqueued at a time. You can <a href="tutorial-middleware.html">learn more about midleware here</a></li>
+<li><code>task.middleware</code>: middleware modify how your tasks are enqueued. For example, if you use the <code>queue-lock</code> plugin, only one instance of any job (with similar arguments) can be enqueued at a time. You can <a href="tutorial-middleware.html">learn more about middleware here</a></li>
 </ul>
 <p><code>task.run</code> contains the actual work that the task does. It takes the following arguments:</p>
 <ul>

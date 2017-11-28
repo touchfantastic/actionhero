@@ -152,7 +152,7 @@ api.connections.addMiddleware(connectionMiddleware)</code></pre><p>Like the acti
 api.chatRoom.addMiddleware(chatMiddleware)</code></pre><p>The last type of middleware is used to act when a connection joins, leaves, or communicates within a chat room. We have 4 types of middleware for each step: <code>say</code>, <code>onSayReceive</code>, <code>join</code>, and <code>leave</code>.</p>
 <p>Priority is optional in all cases, but can be used to order your middleware. If an error is returned thrown any of these methods, it will be returned to the client, and the action/verb/message will not be sent.</p>
 <p>More detail and nuance on chat middleware can be found in the <a href="tutorial-chat.html">chat tutorial</a></p>
-<h3>Chat Midleware Notes</h3><ul>
+<h3>Chat Middleware Notes</h3><ul>
 <li>In the example above, I want to announce the member joining the room, but he has not yet been added to the room, as the join logic is still firing. If the connection itself were to make the broadcast, it would fail because the connection is not in the room. Instead, an empty <code>{}</code> connection is used to proxy the message coming from the 'server'.</li>
 <li>Only the <code>sayCallbacks</code> return <code>messagePayload</code>. This allows you to modify the message being sent to your clients.<ul>
 <li><code>messagePayload</code> will be modified and and passed on to all middlewares inline, so you can append and modify it as you go</li>
