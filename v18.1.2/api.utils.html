@@ -702,7 +702,7 @@ let responses = await api.utils.asyncWaterfall(jobs)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line394">line 394</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line429">line 429</a>
     </li></ul></dd>
     
 
@@ -858,7 +858,7 @@ Throws an error if the directory already exists, or encounters a filesystem prob
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line412">line 412</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line447">line 447</a>
     </li></ul></dd>
     
 
@@ -1060,7 +1060,7 @@ Throws an error if the file already exists, or encounters a filesystem problem.<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line432">line 432</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line467">line 467</a>
     </li></ul></dd>
     
 
@@ -1262,7 +1262,7 @@ Throws an error if the file already exists, or encounters a filesystem problem.<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line467">line 467</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line502">line 502</a>
     </li></ul></dd>
     
 
@@ -1441,7 +1441,7 @@ Throws an error if it encounters a filesystem problem.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line367">line 367</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line402">line 402</a>
     </li></ul></dd>
     
 
@@ -1592,7 +1592,7 @@ Throws an error if it encounters a filesystem problem.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line289">line 289</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line324">line 324</a>
     </li></ul></dd>
     
 
@@ -1747,7 +1747,7 @@ Throws an error if it encounters a filesystem problem.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line380">line 380</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line415">line 415</a>
     </li></ul></dd>
     
 
@@ -1898,7 +1898,7 @@ Throws an error if it encounters a filesystem problem.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line342">line 342</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line377">line 377</a>
     </li></ul></dd>
     
 
@@ -2364,7 +2364,7 @@ Matching keys in B override A.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line246">line 246</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line281">line 281</a>
     </li></ul></dd>
     
 
@@ -2507,6 +2507,161 @@ Matching keys in B override A.</p>
 
     
 
+    <h4 class="name" id=".parseHeadersForClientAddress"><span class="type-signature">(static) </span>parseHeadersForClientAddress<span class="signature">(headers)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line246">line 246</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Return ip and port information if defined in the header</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>key-value header parameters</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A new Object, contains ip and port</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
     <h4 class="name" id=".parseIPv6URI"><span class="type-signature">(static) </span>parseIPv6URI<span class="signature">(addr)</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
@@ -2519,7 +2674,7 @@ Matching keys in B override A.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line264">line 264</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line299">line 299</a>
     </li></ul></dd>
     
 
@@ -2681,7 +2836,7 @@ Matching keys in B override A.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line450">line 450</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line485">line 485</a>
     </li></ul></dd>
     
 
@@ -2883,7 +3038,7 @@ Throws an error if the file does not exist, or encounters a filesystem problem.<
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line324">line 324</a>
+        <a href="initializers_utils.js.html">initializers/utils.js</a>, <a href="initializers_utils.js.html#line359">line 359</a>
     </li></ul></dd>
     
 
