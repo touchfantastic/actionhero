@@ -88,13 +88,13 @@
 <li><code>file.content</code>'s data is sent <code>raw</code>, and is likely to contain binary content and line breaks. Parse your responses accordingly!</li>
 </ul>
 <h2>Files From Actions</h2><pre class="prettyprint source lang-js"><code>// send a file
-async run () {
+async run (data) {
   data.connection.sendFile('/path/to/file.mp3')
   data.toRender = false
 }
 
 // send 404 (web connection)
-async run () {
+async run (data) {
   data.connection.rawConnection.responseHttpCode = 404;
   data.connection.sendFile('404.html')
   data.toRender = false
