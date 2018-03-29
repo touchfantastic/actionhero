@@ -48,9 +48,9 @@
 <article>
     <p><img src="flying-man.svg" alt=""></p>
 <h2>Overview</h2><p>ActionHero provides test helpers so that you may try your actions and tasks within a headless environment. We do this by including a <code>specHelper</code> initializer which creates a server, <code>testServer</code> when running within the test environment. Via the <code>testServer</code>, you can easily call actions or tasks without making a real request.</p>
-<p>We have chosen <a href="http://mochajs.org/">mocha</a> as our test framework and <a href="http://chaijs.com/">chai</a> as our assertion tool which are included as dependencies within all new projects generated with <code>actionhero generate</code>. We also use <code>cross-env</code> to set NODE_ENV in a way that works for all operating systems, including Windows. You do not need to use these testing tools, but an example will be provided which makes use of them.</p>
+<p>We have chosen <a href="https://facebook.github.io/jest">jest</a> as our test framework which is included as dependencies within all new projects generated with <code>actionhero generate</code>. You do not need to use these testing tools, but an example will be provided which makes use of them.</p>
 <p>You also don't need to use these test helpers, and you may want to make a real http or websocket request to test something specific. If this is the case, you can <a href="https://github.com/actionhero/actionhero/tree/master/test/servers">check out how ActionHero tests its own servers</a> for examples.</p>
-<h2>Getting Started</h2><pre class="prettyprint source lang-js"><code>// package.json from a new actionhero project with \`mocha\` and \`chai\` included
+<h2>Getting Started</h2><pre class="prettyprint source lang-js"><code>// package.json from a new actionhero project with \`jest\`included
 {
   &quot;author&quot;      : &quot;YOU &lt;YOU@example.com>&quot;,
   &quot;name&quot;        : &quot;my_actionhero_project&quot;,
@@ -64,52 +64,49 @@
     &quot;ws&quot;         : &quot;latest&quot;
   },
   &quot;devDependencies&quot; : {
-    &quot;cross-env&quot;: &quot;latest&quot;,
-    &quot;mocha&quot;  : &quot;latest&quot;,
-    &quot;chai&quot; : &quot;latest&quot;
+    &quot;jest&quot; : &quot;latest&quot;
   },
   &quot;scripts&quot; : {
     &quot;help&quot;         : &quot;actionhero help&quot;,
     &quot;start&quot;        : &quot;actionhero start&quot;,
     &quot;actionhero&quot;   : &quot;actionhero&quot;,
     &quot;start cluster&quot;: &quot;actionhero start cluster&quot;,
-    &quot;test&quot;         : &quot;cross-env NODE_ENV=test mocha&quot;
+    &quot;test&quot;         : &quot;jest&quot;
   }
-}</code></pre><p>To run a mocha test suite, you invoke the mocha binary, <code>./node_modules/.bin/mocha</code> or <code>npx mocha</code>. This will tell mocha to look in your <code>./test</code> folder and run any tests that it can find. There are ways to change the test folder location, only run specific tests, change the reporting format and more which you can learn about on <a href="http://mochajs.org/">Mocha's website</a>. We assume that you have <code>mocha</code> (and <code>chai</code>) installed to your project by listing it in your <code>package.json</code>. If you used <code>actionHero generate</code> to create your project, this should already be configured for you.</p>
-<p>The majority of the time, you'll be testing actions and other methods you have written, so you'll need to &quot;run&quot; an actionhero server as part of your test suite. Many times you'll want to have ActionHero behave in a slightly unique way while testing (perhaps connect to a special database, don't log, etc). To do this, you can change the behavior of the config files for the <code>test</code> environment. Here is how we tell ActionHero <a href="https://github.com/actionhero/actionhero/blob/master/config/logger.js#L48-L54">not to write any logs when testing</a>. Note the test-specific configuration overrides the defaults. To ensure that ActionHero boots with the <code>test</code> environment loaded, the test command you run should explicitly do this, AKA: <code>NODE_ENV=test npx mocha</code>. You can set this in as the <a href="https://github.com/actionhero/actionhero/blob/master/package.json#L63"><code>test</code> script in your <code>package.json</code></a> so you can simplify the running of tests with just <code>npm test</code>.</p>
+}</code></pre><p>To run a jest test suite, you invoke the jest binary, <code>./node_modules/.bin/jest</code> or <code>npx jest</code>. This will tell jest to look in your <code>./__tests__</code> folder and run any tests that it can find. There are ways to change the test folder location, only run specific tests, change the reporting format and more which you can learn about on <a href="https://facebook.github.io/jest">Jest's website</a>. We assume that you have <code>jest</code> installed to your project by listing it in your <code>package.json</code>. If you used <code>actionHero generate</code> to create your project, this should already be configured for you.</p>
+<p>The majority of the time, you'll be testing actions and other methods you have written, so you'll need to &quot;run&quot; an actionhero server as part of your test suite. Many times you'll want to have ActionHero behave in a slightly unique way while testing (perhaps connect to a special database, don't log, etc). To do this, you can change the behavior of the config files for the <code>test</code> environment. Here is how we tell ActionHero <a href="https://github.com/actionhero/actionhero/blob/master/config/logger.js#L48-L54">not to write any logs when testing</a>. Note the test-specific configuration overrides the defaults. Jest will automatically set <code>NODE_ENV=test</code> for you.</p>
 <p>ActionHero comes with a <code>specHelper</code> to make it easier to test tasks and actions. This specHelper is a special <a href="/docs/core/#servers">server</a> which can check things without needing to make an HTTP, websocket, etc request. If you need to check the true behavior of a server (perhaps how the router works for an HTTP request), you should make a real HTTP request in your test suite, using something like the <a href="https://github.com/request/request">request</a> library (<a href="https://github.com/actionhero/actionhero/blob/master/test/servers/web.js#L178-L184">example</a>).</p>
 <h2>Example Test</h2><p>Say you had an action that was supposed to respond with a <code>randomNumber</code>, and you wanted to write a test for it.</p>
-<pre class="prettyprint source lang-js"><code>const chai = require('chai')
-const dirtyChai = require('dirty-chai')
-const expect = chai.expect
-chai.use(dirtyChai)
-
+<pre class="prettyprint source lang-js"><code>const path = require('path')
 const ActionHero = require('actionhero')
 const actionhero = new ActionHero.Process()
 let api
 
-describe('Action: RandomNumber', () => {
-  before(async () => { api = await actionhero.start() })
-  after(async () => { await actionhero.stop() })
+describe('Action', () => {
+  describe('randomNumber', () => {
+    beforeAll(async () => { api = await actionhero.start() })
+    afterAll(async () => { await actionhero.stop() })
 
-  let firstNumber = null
-  it('generates random numbers', async () => {
-    let {randomNumber} = await api.specHelper.runAction('randomNumber')
-    expect(randomNumber).to.be.at.least(0)
-    expect(randomNumber).to.be.at.most(1)
-    firstNumber = randomNumber
-  })
+    let firstNumber = null
 
-  it('is unique / random', async () => {
-    let {randomNumber} = await api.specHelper.runAction('randomNumber')
-    expect(randomNumber).to.be.at.least(0)
-    expect(randomNumber).to.be.at.most(1)
-    expect(randomNumber).not.to.equal(firstNumber)
+    test('generates random numbers', async () => {
+      let {randomNumber} = await api.specHelper.runAction('randomNumber')
+      expect(randomNumber).toBeGreaterThan(0)
+      expect(randomNumber).toBeLessThan(1)
+      firstNumber = randomNumber
+    })
+
+    test('is unique / random', async () => {
+      let {randomNumber} = await api.specHelper.runAction('randomNumber')
+      expect(randomNumber).toBeGreaterThan(0)
+      expect(randomNumber).toBeLessThan(1)
+      expect(randomNumber).not.toEqual(firstNumber)
+    })
   })
-})</code></pre><p>More details on the specHelper methods <a href="api.specHelper.html">can be found here</a></p>
+})
+</code></pre><p>More details on the specHelper methods <a href="api.specHelper.html">can be found here</a></p>
 <p>If you want to see fuller example of how to create an integration test within ActionHero, please <a href="https://github.com/actionhero/actionhero-tutorial#testing">check out the tutorial</a></p>
-<h2>Notes</h2><p>Be sure to run your tests in the <code>test</code> environment, setting the shell's env with <code>NODE_ENV=test</code>. You can alternatively set this explicitly in your tests with <code>process.env.NODE_ENV = 'test'</code></p>
-<p>If you do not want the <code>specHelper</code> actions to include metadata (<code>data.response.serverInformation</code>, <code>data.response.requesterInformation</code>, and <code>data.response.messageCount</code>) from the server, you can configure <code>api.specHelper.returnMetadata = false</code> in your tests.</p>
+<h2>Notes</h2><p>If you do not want the <code>specHelper</code> actions to include metadata (<code>data.response.serverInformation</code>, <code>data.response.requesterInformation</code>, and <code>data.response.messageCount</code>) from the server, you can configure <code>api.specHelper.returnMetadata = false</code> in your tests.</p>
 </article>
 
 </section>
