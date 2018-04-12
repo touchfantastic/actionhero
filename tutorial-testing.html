@@ -77,8 +77,7 @@
 <p>The majority of the time, you'll be testing actions and other methods you have written, so you'll need to &quot;run&quot; an actionhero server as part of your test suite. Many times you'll want to have ActionHero behave in a slightly unique way while testing (perhaps connect to a special database, don't log, etc). To do this, you can change the behavior of the config files for the <code>test</code> environment. Here is how we tell ActionHero <a href="https://github.com/actionhero/actionhero/blob/master/config/logger.js#L48-L54">not to write any logs when testing</a>. Note the test-specific configuration overrides the defaults. Jest will automatically set <code>NODE_ENV=test</code> for you.</p>
 <p>ActionHero comes with a <code>specHelper</code> to make it easier to test tasks and actions. This specHelper is a special <a href="/docs/core/#servers">server</a> which can check things without needing to make an HTTP, websocket, etc request. If you need to check the true behavior of a server (perhaps how the router works for an HTTP request), you should make a real HTTP request in your test suite, using something like the <a href="https://github.com/request/request">request</a> library (<a href="https://github.com/actionhero/actionhero/blob/master/test/servers/web.js#L178-L184">example</a>).</p>
 <h2>Example Test</h2><p>Say you had an action that was supposed to respond with a <code>randomNumber</code>, and you wanted to write a test for it.</p>
-<pre class="prettyprint source lang-js"><code>const path = require('path')
-const ActionHero = require('actionhero')
+<pre class="prettyprint source lang-js"><code>const ActionHero = require('actionhero')
 const actionhero = new ActionHero.Process()
 let api
 
@@ -90,14 +89,14 @@ describe('Action', () => {
     let firstNumber = null
 
     test('generates random numbers', async () => {
-      let {randomNumber} = await api.specHelper.runAction('randomNumber')
+      const {randomNumber} = await api.specHelper.runAction('randomNumber')
       expect(randomNumber).toBeGreaterThan(0)
       expect(randomNumber).toBeLessThan(1)
       firstNumber = randomNumber
     })
 
-    test('is unique / random', async () => {
-      let {randomNumber} = await api.specHelper.runAction('randomNumber')
+    test('is unique', async () => {
+      const {randomNumber} = await api.specHelper.runAction('randomNumber')
       expect(randomNumber).toBeGreaterThan(0)
       expect(randomNumber).toBeLessThan(1)
       expect(randomNumber).not.toEqual(firstNumber)
