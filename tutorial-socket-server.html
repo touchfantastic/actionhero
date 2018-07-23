@@ -57,30 +57,30 @@ Escape character is '^]'.
 {&quot;welcome&quot;:&quot;Hello! Welcome to the actionhero api&quot;,&quot;room&quot;:&quot;defaultRoom&quot;,&quot;context&quot;:&quot;api&quot;}
 
 detailsView
-{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;data&quot;:{&quot;id&quot;:&quot;2d68c389-521d-4dc6-b4f1-8292cd6cbde6&quot;,&quot;remoteIP&quot;:&quot;127.0.0.1&quot;,&quot;remotePort&quot;:57393,&quot;params&quot;:{},&quot;connectedAt&quot;:1368918901456,&quot;room&quot;:&quot;defaultRoom&quot;,&quot;totalActions&quot;:0,&quot;pendingActions&quot;:0},&quot;messageCount&quot;:1}
+{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;data&quot;:{&quot;id&quot;:&quot;2d68c389-521d-4dc6-b4f1-8292cd6cbde6&quot;,&quot;remoteIP&quot;:&quot;127.0.0.1&quot;,&quot;remotePort&quot;:57393,&quot;params&quot;:{},&quot;connectedAt&quot;:1368918901456,&quot;room&quot;:&quot;defaultRoom&quot;,&quot;totalActions&quot;:0,&quot;pendingActions&quot;:0},&quot;messageId&quot;:1}
 
 randomNumber
-{&quot;randomNumber&quot;:0.4977603426668793,&quot;context&quot;:&quot;response&quot;,&quot;messageCount&quot;:2}
+{&quot;randomNumber&quot;:0.4977603426668793,&quot;context&quot;:&quot;response&quot;,&quot;messageId&quot;:2}
 
 cacheTest
-{&quot;error&quot;:&quot;Error: key is a required parameter for this action&quot;,&quot;context&quot;:&quot;response&quot;,&quot;messageCount&quot;:3}
+{&quot;error&quot;:&quot;Error: key is a required parameter for this action&quot;,&quot;context&quot;:&quot;response&quot;,&quot;messageId&quot;:3}
 
 paramAdd key=myKey
-{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;data&quot;:null,&quot;messageCount&quot;:4}
+{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;data&quot;:null,&quot;messageId&quot;:4}
 
 paramAdd value=myValue
-{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;data&quot;:null,&quot;messageCount&quot;:5}
+{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;data&quot;:null,&quot;messageId&quot;:5}
 paramsView
-{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;data&quot;:{&quot;action&quot;:&quot;cacheTest&quot;,&quot;key&quot;:&quot;myKey&quot;,&quot;value&quot;:&quot;myValue&quot;},&quot;messageCount&quot;:6}
+{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;data&quot;:{&quot;action&quot;:&quot;cacheTest&quot;,&quot;key&quot;:&quot;myKey&quot;,&quot;value&quot;:&quot;myValue&quot;},&quot;messageId&quot;:6}
 
 cacheTest
-{&quot;cacheTestResults&quot;:{&quot;saveResp&quot;:true,&quot;sizeResp&quot;:1,&quot;loadResp&quot;:{&quot;key&quot;:&quot;cacheTest_myKey&quot;,&quot;value&quot;:&quot;myValue&quot;,&quot;expireTimestamp&quot;:1368918936984,&quot;createdAt&quot;:1368918931984,&quot;readAt&quot;:1368918931995},&quot;deleteResp&quot;:true},&quot;context&quot;:&quot;response&quot;,&quot;messageCount&quot;:7}
+{&quot;cacheTestResults&quot;:{&quot;saveResp&quot;:true,&quot;sizeResp&quot;:1,&quot;loadResp&quot;:{&quot;key&quot;:&quot;cacheTest_myKey&quot;,&quot;value&quot;:&quot;myValue&quot;,&quot;expireTimestamp&quot;:1368918936984,&quot;createdAt&quot;:1368918931984,&quot;readAt&quot;:1368918931995},&quot;deleteResp&quot;:true},&quot;context&quot;:&quot;response&quot;,&quot;messageId&quot;:7}
 
 roomAdd default Room
 {&quot;status&quot;:&quot;OK&quot;}
 
 say defaultRoom hooray!
-{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;data&quot;:null,&quot;messageCount&quot;:8}</code></pre><p>You can access actionhero's methods via a persistent socket connection. The default port for this type of communication is 5000. As this is a persistent connection, socket connections have actionhero's verbs available to them. These verbs are:</p>
+{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;data&quot;:null,&quot;messageId&quot;:8}</code></pre><p>You can access actionhero's methods via a persistent socket connection. The default port for this type of communication is 5000. As this is a persistent connection, socket connections have actionhero's verbs available to them. These verbs are:</p>
 <ul>
 <li><code>quit</code> disconnect from the session</li>
 <li><code>paramAdd</code> - save a singe variable to your connection. IE: ‘addParam screenName=evan'</li>
@@ -96,7 +96,7 @@ say defaultRoom hooray!
 </ul>
 <p>Please note that any verbs set using the above method will be sticky to the connection and sent for all subsequent requests. Be sure to delete or update your params before your next request.</p>
 <p>To help sort out the potential stream of messages a socket user may receive, it is best to understand the &quot;context&quot; of the response. For example, by default all actions set a context of &quot;response&quot; indicating that the message being sent to the client is response to a request they sent (either an action or a chat action like <code>say</code>). Messages sent by a user via the <code>say</code> command have the context of <code>user</code> indicating they came form a user. Messages resulting from data sent to the api (like an action) will have the <code>response</code> context.</p>
-<p>Every message returned also contains a <code>messageId</code>, starting from 1, which increments to count a response to each client request.  <code>say</code> messages do not increment <code>messageCount</code>, which allows this count to be used by the client to map responses to queries.</p>
+<p>Every message returned also contains a <code>messageId</code>, starting from 1, which increments to count a response to each client request.  <code>say</code> messages do not increment <code>messageId</code>, which allows this count to be used by the client to map responses to queries.</p>
 <p><code>connection.type</code> for a TCP/Socket client is &quot;socket&quot;</p>
 <h2>Config Options</h2><pre class="prettyprint source lang-js"><code>exports['default'] = {
   servers: {
@@ -162,15 +162,15 @@ Connected to localhost.
 Escape character is '^]'.
 {&quot;welcome&quot;:&quot;Hello! Welcome to the actionhero api&quot;,&quot;context&quot;:&quot;api&quot;}
 $ paramAdd file=simple.html
-{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;messageCount&quot;:1}
+{&quot;status&quot;:&quot;OK&quot;,&quot;context&quot;:&quot;response&quot;,&quot;messageId&quot;:1}
 $ file
 &lt;h1>ActionHero&lt;/h1>\nI am a flat file being served to you via the API from ./public/simple.html&lt;br /></code></pre><h2>JSON Parameters</h2><p>The default method of using actions for TCP clients is to use the methods above to set params to their session and then call actions inline. However, you can also communication via JSON, passing along params specific to each request.</p>
 <ul>
 <li><code>{&quot;action&quot;: &quot;myAction&quot;, &quot;params&quot;: {&quot;key&quot;: &quot;value&quot;}}</code> is also a valid request over TCP</li>
 </ul>
 <h2>Client Suggestions</h2><p>The main <code>trick</code> to working with TCP/wire connections directly is to remember that you can have many ‘pending' requests at the same time. Also, the order in which you receive responses back can be variable. if you request <code>slowAction</code> and then <code>fastAction</code>, it's fairly likely that you will get a response to <code>fastAction</code> first.</p>
-<p>Note that only requests the client makes increment the <code>messageCount</code>, but broadcasts do not (the <code>say</code> command, etc)</p>
-<p><a href="https://github.com/actionhero/actionhero-node-client">The actionhero Node Client Library</a> uses TCP/TLS connections, and makes use of actionhero's <code>messageCount</code> parameter to keep track of requests, and keeps response callbacks for actions in a pending queue. For example:</p>
+<p>Note that only requests the client makes increment the <code>messageId</code>, but broadcasts do not (the <code>say</code> command, etc)</p>
+<p><a href="https://github.com/actionhero/actionhero-node-client">The actionhero Node Client Library</a> uses TCP/TLS connections, and makes use of actionhero's <code>messageId</code> parameter to keep track of requests, and keeps response callbacks for actions in a pending queue. For example:</p>
 <pre class="prettyprint source lang-js"><code>const path = require('path')
 const ActionheroNodeClient = require(path.join(__dirname, 'lib', 'client.js'))
 

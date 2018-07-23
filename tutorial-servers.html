@@ -88,7 +88,7 @@ module.exports = class MyServer extends ActionHero.Server {
 
   }
 
-  sendMessage (connection, message, messageCount) {
+  sendMessage (connection, message, messageId) {
 
   }
 
@@ -180,7 +180,7 @@ The required attributes are provided in a generated server.</p>
   connection.response = {}
   return this.processAction(connection)
 }</code></pre><h2>Chat</h2><p>The <code>attribute</code> &quot;canChat&quot; defines if clients of this server can chat.  If clients can chat, they should be allowed to use verbs like &quot;roomChange&quot; and &quot;say&quot;.  They will also be sent messages in their room (and rooms they are listening too) automatically.</p>
-<h2>Sending Responses</h2><p>All servers need to implement the <code>server.sendMessage = function(connection, message, messageCount)</code> method so ActionHero knows how to talk to each client.  This is likely to make use of <code>connection.rawConnection</code>.  If you are writing a server for a persistent connection, it is likely you will need to respond with <code>messageCount</code> so that the client knows which request your response is about (as they are not always going to get the responses in order).</p>
+<h2>Sending Responses</h2><p>All servers need to implement the <code>server.sendMessage = function(connection, message, messageId)</code> method so ActionHero knows how to talk to each client.  This is likely to make use of <code>connection.rawConnection</code>.  If you are writing a server for a persistent connection, it is likely you will need to respond with <code>messageId</code> so that the client knows which request your response is about (as they are not always going to get the responses in order).</p>
 <h2>Sending Files</h2><p>Servers can optionally implement the <code>server.sendFile = function(connection, error, fileStream, mime, length)</code> method.  This method is responsible for any connection-specific file transport (headers, chinking, encoding, etc). Note that fileStream is a <code>stream</code> which should be <code>pipe</code>'d to the client.</p>
 <h2>Customizing Servers</h2><pre class="prettyprint source lang-js"><code>//Initializer
  module.exports = {
